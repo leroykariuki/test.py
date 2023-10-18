@@ -18,6 +18,13 @@ cursor.execute('''
 def add_data(name, age):
     cursor.execute("INSERT INTO your_table (name, age) VALUES (?, ?)", (name, age))
 
+# View all data in the table
+def view_data():
+    cursor.execute("SELECT * FROM your_table")
+    rows = cursor.fetchall()
+    for row in rows:
+        print(row)
+
 # Check if command-line arguments are provided
 if len(sys.argv) == 3:
     name = sys.argv[1]
@@ -25,6 +32,9 @@ if len(sys.argv) == 3:
     add_data(name, age)
 else:
     print("Usage: python your_script.py <name> <age>")
+
+# Uncomment the next line to view data
+view_data()
 
 # Commit changes and close the connection
 conn.commit()
